@@ -8,7 +8,7 @@ const vscode = require("vscode");
 function activate(context) {
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "health" is now active!');
+    console.log('Congratulations, your extension "health" is now active! The extension will remind you to have a rest up if you continue to work in VS code for more than 1 hour.');
     loadMessage();
 }
 exports.activate = activate;
@@ -24,7 +24,7 @@ async function loadMessage() {
     const minimumRequiredIdleDuration = 4 * 60 * 1000;
     const allowanceDuration = 2 * 60 * 1000;
     const maximumActiveDuration = 60 * 60 * 1000;
-    const checkInterval = 30000;
+    const checkInterval = 20000;
     //change this;
     while (true) {
         let activeEditor = vscode.window.activeTextEditor;
@@ -48,8 +48,8 @@ async function loadMessage() {
                 activeTimer = 0;
             }
         }
-        console.log("You have been idle for: " + idleTimer / 1000 + " secs");
-        console.log("You have been working in VS code for: " + activeTimer / 1000 + " secs");
+        // console.log("You have been idle for: " + idleTimer / 1000 + " secs");
+        // console.log("You have been working in VS code for: " + activeTimer / 1000 + " secs");
         await sleep(checkInterval);
     }
 }
