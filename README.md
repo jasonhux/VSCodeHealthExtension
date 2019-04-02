@@ -13,3 +13,9 @@ This extension runs with the VS code without extra command activation.
 ### 0.0.1
 
 Initial release of Health extension, it now checks the interactions with the active editor to determine the activity duration.
+
+### How to install the extension
+
+At the moment the extension is not in the marketplace so you will need to locate the vsix file in the repo and install it manually.
+Save 'health-x.x.x.vsix' file to your local drive. Then use VS code command line providing the path to the .vsix file.
+For example: 'code myExtensionFolder\myExtension.vsix'
