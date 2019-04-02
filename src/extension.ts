@@ -10,15 +10,16 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "health" is now active! The extension will remind you to have a rest up if you continue to work in VS code for more than 1 hour.');
 	loadMessage();
+
 }
 
 // this method is called when your extension is deactivated
 export function deactivate() { }
 
 
-async function loadMessage() {
+async function loadMessage() {	
+	vscode.window.showInformationMessage('Congratulations, your extension "health" is now active! The extension will remind you to have a rest up if you continue to work in VS code for more than 1 hour.');
 	let editorBefore = new Editor();
 	let editorCurrent = new Editor();
 	//timer in milliseconds
@@ -41,18 +42,15 @@ async function loadMessage() {
 			activeTimer += checkInterval + idleTimer;
 			idleTimer = 0;
 			if (activeTimer >= maximumActiveDuration) {
-				vscode.window.showInformationMessage('Time to rest! You need to be away from your keyboard at least ' + minimumRequiredIdleDuration / 60 * 1000, { modal: true });
+				vscode.window.showInformationMessage('Time to rest! You need to be away from your keyboard at least ' + minimumRequiredIdleDuration / (60 * 1000) + " minutes", { modal: true });
 				activeTimer -= minimumRequiredIdleDuration + allowanceDuration;
 			} 
 		} else {
 			idleTimer += checkInterval;
-			if (idleTimer >= minimumRequiredIdleDuration) {
+			if (idleTimer >= minimumRequiredIdleDuration) {   
 				activeTimer = 0;
 			}
 		}
-
-		// console.log("You have been idle for: " + idleTimer / 1000 + " secs");
-		// console.log("You have been working in VS code for: " + activeTimer / 1000 + " secs");
 		await sleep(checkInterval);
 	}
 }

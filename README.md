@@ -18,4 +18,4 @@ Initial release of Health extension, it now checks the interactions with the act
 
 At the moment the extension is not in the marketplace so you will need to locate the vsix file in the repo and install it manually.
 Save 'health-x.x.x.vsix' file to your local drive. Then use VS code command line providing the path to the .vsix file.
-For example: 'code myExtensionFolder\myExtension.vsix'
+For example: code --install-extension "myExtensionFolder\myExtension.vsix"
