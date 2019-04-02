@@ -31,7 +31,7 @@ async function loadMessage() {
 	const minimumRequiredIdleDuration = 4 * 60 * 1000;
 	const allowanceDuration = 2 * 60 *1000;
 	const maximumActiveDuration = 60 * 60 * 1000;
-	const checkInterval = 20000;
+	const checkInterval = 10000;
 	//change this;
 	while (true) {
 		let activeEditor = vscode.window.activeTextEditor;
