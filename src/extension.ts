@@ -2,6 +2,8 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
+let idleTimer = 0;
+let activeTimer = 0;
 
 
 // this method is called when your extension is activated
@@ -10,8 +12,11 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
+	let disposable = vscode.commands.registerCommand('extension.displayTimers',()=>{
+		vscode.window.showInformationMessage("You have been working in VS code for:" + activeTimer / 1000 + " secs");
+	});
+	context.subscriptions.push(disposable);
 	loadMessage();
-
 }
 
 // this method is called when your extension is deactivated
@@ -23,8 +28,6 @@ async function loadMessage() {
 	let editorBefore = new Editor();
 	let editorCurrent = new Editor();
 	//timer in milliseconds
-	let idleTimer = 0;
-	let activeTimer = 0;
 	const minimumRequiredIdleDuration = 4 * 60 * 1000;
 	const allowanceDuration = 2 * 60 *1000;
 	const maximumActiveDuration = 60 * 60 * 1000;

@@ -16,6 +16,12 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"commands": [
+			{
+				"command": "extension.displayTimers",
+				"title": "Timer for rest"
+			}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
