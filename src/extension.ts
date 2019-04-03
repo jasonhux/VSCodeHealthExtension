@@ -32,12 +32,12 @@ async function loadMessage() {
 	const allowanceDuration = 2 * 60 *1000;
 	const maximumActiveDuration = 60 * 60 * 1000;
 	const checkInterval = 10000;
-	//change this;
 	while (true) {
 		let activeEditor = vscode.window.activeTextEditor;
 		if (activeEditor) {
 			editorCurrent.uri = activeEditor.document.uri.toString();
 			editorCurrent.position = activeEditor.selection.active;
+
 		}
 		if (editorCurrent.hasActivities(editorBefore)) {
 			editorBefore.uri = editorCurrent.uri;
@@ -52,6 +52,7 @@ async function loadMessage() {
 			idleTimer += checkInterval;
 			if (idleTimer >= minimumRequiredIdleDuration) {   
 				activeTimer = 0;
+				idleTimer = 0;
 			}
 		}
 		await sleep(checkInterval);
